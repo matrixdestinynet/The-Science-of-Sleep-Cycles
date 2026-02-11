@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Science of Sleep Cycles: Understanding REM and Non-REM Sleep</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #e0e7ff;
+            --n1-color: #93c5fd;
+            --n2-color: #60a5fa;
+            --n3-color: #3b82f6;
+            --rem-color: #8b5cf6;
+            --light: #ffffff;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --gray-light: #f8fafc;
+            --border-radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #3730a3 0%, var(--primary) 100%);
+            color: white;
+            padding: 70px 0 50px;
+            margin-bottom: 50px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brain-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            opacity: 0.1;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Sleep Cycle Visualization */
+        .cycle-visualization {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--gray-light);
+        }
+
+        .cycle-chart {
+            display: flex;
+            height: 120px;
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--gray-light);
+        }
+
+        .cycle-stage {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .cycle-stage:hover {
+            flex: 1.5;
+        }
+
+        .cycle-stage.n1 { background: var(--n1-color); }
+        .cycle-stage.n2 { background: var(--n2-color); }
+        .cycle-stage.n3 { background: var(--n3-color); }
+        .cycle-stage.rem { background: var(--rem-color); }
+
+        /* Stages Grid */
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .stage-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--gray-light);
+            transition: transform 0.3s ease;
+        }
+
+        .stage-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card-header {
+            padding: 25px 25px 15px;
+            color: white;
+        }
+
+        .n1-card .card-header { background: var(--n1-color); }
+        .n2-card .card-header { background: var(--n2-color); }
+        .n3-card .card-header { background: var(--n3-color); }
+        .rem-card .card-header { background: var(--rem-color); }
+
+        .stage-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .card-subtitle {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0 10px 25px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            font-family: "Font Awesome 6 Free";
+            position: absolute;
+            left: 0;
+            font-weight: 900;
+        }
+
+        .brainwave:before { content: "\f0e7"; color: var(--primary); }
+        .body:before { content: "\f21e"; color: #10b981; }
+        .function:before { content: "\f005"; color: #f59e0b; }
+
+        /* Sleep Cycle Pattern */
+        .cycle-pattern {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--gray-light);
+        }
+
+        .cycle-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .cycle-phase {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            background: var(--gray-light);
+            min-width: 150px;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--gray-light);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .comparison-table td {
+            padding: 18px 15px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-radius: var(--border-radius);
+            padding: 50px;
+            margin: 60px 0 40px;
+            text-align: center;
+        }
+
+        .resource-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .resource-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 16px 32px;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-light);
+        }
+
+        .resource-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            color: #3730a3;
+        }
+
+        .resource-btn i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #3730a3;
+            color: white;
+        }
+
+        /* Minimal Animation */
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .pulse-element {
+            animation: gentlePulse 4s infinite ease-in-out;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--gray);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--gray-light);
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+            
+            header {
+                padding: 50px 20px 40px;
+            }
+            
+            .stages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resource-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .resource-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .cta-section, .cycle-visualization, .comparison-section {
+                padding: 30px 20px;
+            }
+            
+            .cycle-chart {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .cycle-stage {
+                height: 60px;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brain-icon">
+            <i class="fas fa-brain"></i>
+        </div>
+        <div class="container">
+            <h1>The Science of Sleep Cycles</h1>
+            <p class="tagline">What Really Happens During REM and Non-REM Sleep</p>
+            <div style="background: rgba(255, 255, 255, 0.15); color: white; padding: 12px 25px; border-radius: 50px; display: inline-block; margin-top: 20px; border: 1px solid rgba(255, 255, 255, 0.3);">
+                <i class="fas fa-microscope" style="margin-right: 10px;"></i> Neuroscience Made Understandable
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Introduction -->
+        <section style="background: white; border-radius: var(--border-radius); padding: 40px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+            <h2 style="color: var(--primary); margin-bottom: 20px;">The Architecture of Sleep</h2>
+            <p>Sleep isn't a uniform state of unconsciousness, but rather a <strong>cyclical journey</strong> through distinct physiological stages that repeat every 90-110 minutes throughout the night. Modern sleep science divides this journey into two main categories: Non-REM (NREM) sleep and REM (Rapid Eye Movement) sleep, with NREM further divided into three progressive stages (N1, N2, N3).</p>
+            <p>Think of a full night's sleep as a series of <strong>descending elevators</strong> into deeper restorative states, followed by ascents into vivid dreaming stages, repeated in regular cycles that change in composition as the night progresses.</p>
+        </section>
+
+        <!-- Cycle Visualization -->
+        <div class="cycle-visualization">
+            <h2 style="color: var(--dark); margin-bottom: 15px;">The 90-Minute Sleep Cycle</h2>
+            <p style="color: var(--gray); margin-bottom: 20px;">A typical sleep cycle progresses through these stages:</p>
+            
+            <div class="cycle-chart">
+                <div class="cycle-stage n1" title="Light Sleep (5-10%)">
+                    <span>N1</span>
+                </div>
+                <div class="cycle-stage n2" title="True Sleep (45-55%)">
+                    <span>N2</span>
+                </div>
+                <div class="cycle-stage n3" title="Deep Sleep (15-25%)">
+                    <span>N3</span>
+                </div>
+                <div class="cycle-stage rem" title="Dream Sleep (20-25%)">
+                    <span>REM</span>
+                </div>
+            </div>
+            
+            <p style="text-align: center; color: var(--gray); font-size: 0.95rem;">
+                <i class="fas fa-info-circle" style="color: var(--primary); margin-right: 5px;"></i>
+                Each cycle lasts 90-110 minutes and repeats 4-6 times per night
+            </p>
+        </div>
+
+        <!-- Stages Grid -->
+        <div class="stages-grid">
+            <!-- N1 Stage -->
+            <div class="stage-card n1-card">
+                <div class="card-header">
+                    <div class="stage-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h2 class="card-title">Stage N1</h2>
+                    <p class="card-subtitle">Light Sleep • Transition Phase</p>
+                </div>
+                <div class="card-body">
+                    <p>The doorway between wakefulness and sleep, lasting 1-7 minutes per cycle.</p>
+                    
+                    <ul class="feature-list">
+                        <li class="brainwave"><strong>Brainwaves:</strong> Theta waves (4-7 Hz) - Slower than wakeful beta waves</li>
+                        <li class="body"><strong>Body:</strong> Muscles relax, breathing slows, may experience hypnic jerks</li>
+                        <li class="function"><strong>Function:</strong> Transitional phase, easily awakened</li>
+                    </ul>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: var(--gray-light); border-radius: 8px; border-left: 3px solid var(--n1-color);">
+                        <strong>Analogy:</strong> Like gently floating on water - half aware of surroundings, easily roused.
+                    </div>
+                </div>
+            </div>
+
+            <!-- N2 Stage -->
+            <div class="stage-card n2-card">
+                <div class="card-header">
+                    <div class="stage-icon">
+                        <i class="fas fa-cloud-moon"></i>
+                    </div>
+                    <h2 class="card-title">Stage N2</h2>
+                    <p class="card-subtitle">True Sleep • Memory Consolidation</p>
+                </div>
+                <div class="card-body">
+                    <p>Occupies 45-55% of total sleep, characterized by sleep spindles and K-complexes.</p>
+                    
+                    <ul class="feature-list">
+                        <li class="brainwave"><strong>Brainwaves:</strong> Theta with sleep spindles (11-16 Hz) and K-complexes</li>
+                        <li class="body"><strong>Body:</strong> Body temperature drops, heart rate slows</li>
+                        <li class="function"><strong>Function:</strong> Memory consolidation, skill learning</li>
+                    </ul>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: var(--gray-light); border-radius: 8px; border-left: 3px solid var(--n2-color);">
+                        <strong>Analogy:</strong> Like filing documents - organizing daily memories and experiences.
+                    </div>
+                </div>
+            </div>
+
+            <!-- N3 Stage -->
+            <div class="stage-card n3-card">
+                <div class="card-header">
+                    <div class="stage-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h2 class="card-title">Stage N3</h2>
+                    <p class="card-subtitle">Deep Sleep • Physical Restoration</p>
+                </div>
+                <div class="card-body">
+                    <p>Also called slow-wave sleep or delta sleep, most restorative stage.</p>
+                    
+                    <ul class="feature-list">
+                        <li class="brainwave"><strong>Brainwaves:</strong> Delta waves (0.5-4 Hz) - Slowest brain activity</li>
+                        <li class="body"><strong>Body:</strong> Tissue repair, hormone release, immune strengthening</li>
+                        <li class="function"><strong>Function:</strong> Physical recovery, growth, energy restoration</li>
+                    </ul>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: var(--gray-light); border-radius: 8px; border-left: 3px solid var(--n3-color);">
+                        <strong>Analogy:</strong> Like a deep cleaning service - repairing cells, removing waste from brain.
+                    </div>
+                </div>
+            </div>
+
+            <!-- REM Stage -->
+            <div class="stage-card rem-card pulse-element">
+                <div class="card-header">
+                    <div class="stage-icon">
+                        <i class="fas fa-dream-catcher"></i>
+                    </div>
+                    <h2 class="card-title">REM Sleep</h2>
+                    <p class="card-subtitle">Dream Sleep • Emotional Processing</p>
+                </div>
+                <div class="card-body">
+                    <p>Rapid Eye Movement sleep, where most vivid dreaming occurs.</p>
+                    
+                    <ul class="feature-list">
+                        <li class="brainwave"><strong>Brainwaves:</strong> Mixed frequency (similar to wakefulness)</li>
+                        <li class="body"><strong>Body:</strong> Temporary muscle paralysis, rapid eye movements, irregular breathing</li>
+                        <li class="function"><strong>Function:</strong> Emotional processing, memory integration, creativity</li>
+                    </ul>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: var(--gray-light); border-radius: 8px; border-left: 3px solid var(--rem-color);">
+                        <strong>Analogy:</strong> Like a theater performance - brain actively processes emotions through dreams.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cycle Pattern -->
+        <div class="cycle-pattern">
+            <h2 style="color: var(--dark); margin-bottom: 15px;">How Cycles Change Through the Night</h2>
+            <p style="color: var(--gray); margin-bottom: 25px;">Sleep architecture isn't uniform - it evolves across the night</p>
+            
+            <div class="cycle-diagram">
+                <div class="cycle-phase">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--n3-color);">Early Night</div>
+                    <div style="margin-top: 10px; font-size: 0.9rem;">
+                        Longer N3 (deep sleep)<br>
+                        Shorter REM periods
+                    </div>
+                </div>
+                
+                <div style="font-size: 1.5rem; color: var(--gray);">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="cycle-phase">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--rem-color);">Middle Night</div>
+                    <div style="margin-top: 10px; font-size: 0.9rem;">
+                        Balanced N2 & REM<br>
+                        Moderate N3
+                    </div>
+                </div>
+                
+                <div style="font-size: 1.5rem; color: var(--gray);">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="cycle-phase">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--n2-color);">Late Night</div>
+                    <div style="margin-top: 10px; font-size: 0.9rem;">
+                        Longer REM periods<br>
+                        Minimal N3
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 25px; color: var(--gray);">
+                This progression explains why missing early sleep costs physical restoration, while missing late sleep impacts emotional processing.
+            </p>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="comparison-section">
+            <h2 style="color: var(--dark); margin-bottom: 15px; font-size: 2rem;">Sleep Stage Comparison</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Stage</th>
+                        <th>% of Sleep</th>
+                        <th>Brain Activity</th>
+                        <th>Key Functions</th>
+                        <th>If Deprived</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>N1 (Light)</strong></td>
+                        <td>5-10%</td>
+                        <td>Theta waves begin</td>
+                        <td>Transition to sleep</td>
+                        <td>Sleep inertia increases</td>
+                    </tr>
+                    <tr>
+                        <td><strong>N2 (True Sleep)</strong></td>
+                        <td>45-55%</td>
+                        <td>Sleep spindles, K-complexes</td>
+                        <td>Memory consolidation, learning</td>
+                        <td>Impaired memory & focus</td>
+                    </tr>
+                    <tr>
+                        <td><strong>N3 (Deep Sleep)</strong></td>
+                        <td>15-25%</td>
+                        <td>Delta waves (slowest)</td>
+                        <td>Physical repair, immune function</td>
+                        <td>Fatigue, weakened immunity</td>
+                    </tr>
+                    <tr>
+                        <td><strong>REM (Dream Sleep)</strong></td>
+                        <td>20-25%</td>
+                        <td>Mixed (similar to awake)</td>
+                        <td>Emotional processing, creativity</td>
+                        <td>Mood issues, poor stress coping</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Practical Implications -->
+        <section style="background: white; border-radius: var(--border-radius); padding: 40px; margin: 40px 0; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+            <h2 style="color: var(--primary); margin-bottom: 20px;">Optimizing Your Sleep Cycles</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;">
+                <div>
+                    <h4 style="color: var(--n3-color); margin-bottom: 10px;"><i class="fas fa-clock"></i> Timing Matters</h4>
+                    <p>Complete 5-6 full cycles (7.5-9 hours) to ensure adequate time in each stage. Consistency helps regulate cycle timing.</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--n2-color); margin-bottom: 10px;"><i class="fas fa-bed"></i> Environment</h4>
+                    <p>Cool, dark, quiet rooms promote deeper N3 sleep. Comfortable bedding reduces awakenings that restart cycles.</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--rem-color); margin-bottom: 10px;"><i class="fas fa-ban"></i> Avoid Disruptors</h4>
+                    <p>Alcohol suppresses REM sleep initially. Caffeine within 6 hours of bedtime reduces deep sleep quality.</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-bell"></i> Wake Smart</h4>
+                    <p>Waking during lighter N1 or N2 stages (using sleep cycle alarms) reduces morning grogginess.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2 style="color: var(--primary); margin-bottom: 15px; font-size: 2rem;">Support Your Sleep Health</h2>
+            <p style="color: var(--dark); max-width: 800px; margin: 0 auto 25px; font-size: 1.1rem;">
+                Understanding sleep cycles is the first step. The next is creating an optimal sleep environment. 
+                A clean, well-maintained mattress supports better sleep hygiene and helps you progress through 
+                complete sleep cycles without disruptions.
+            </p>
+            
+            <div class="resource-links">
+                <a href="https://bedguides.com/" class="resource-btn btn-primary">
+                    <i class="fas fa-bed"></i> Learn How to Clean a Mattress
+                </a>
+                
+                <a href="https://matrixdestinynet.github.io/Understanding-Your-Chronotype/" class="resource-btn">
+                    <i class="fab fa-github"></i> Github Educational Resources
+                </a>
+            </div>
+            
+            <div style="margin-top: 40px; padding: 25px; background: white; border-radius: 12px; border-left: 4px solid var(--primary);">
+                <h4 style="color: var(--dark); margin-bottom: 15px;"><i class="fas fa-lightbulb" style="color: var(--primary); margin-right: 10px;"></i>Sleep Science Insight</h4>
+                <p>Your brain is remarkably active during sleep. While N3 deep sleep shows the slowest brainwaves, REM sleep exhibits brain activity similar to waking states. This explains why dreams feel so vivid and real - your visual and emotional centers are fully engaged, while your prefrontal cortex (responsible for logical thinking) is less active, creating the surreal quality of dreams.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Sleep Neuroscience Guide | REM & Non-REM Sleep Science | Educational Resource</p>
+            <p style="margin-top: 15px; font-size: 0.9rem;">Information based on current sleep research. Consult sleep specialists for individual sleep disorders.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive cycle chart
+        const cycleStages = document.querySelectorAll('.cycle-stage');
+        
+        cycleStages.forEach(stage => {
+            stage.addEventListener('mouseenter', function() {
+                const title = this.getAttribute('title');
+                if (title) {
+                    // Create tooltip
+                    const tooltip = document.createElement('div');
+                    tooltip.textContent = title;
+                    tooltip.style.position = 'absolute';
+                    tooltip.style.background = 'rgba(0,0,0,0.8)';
+                    tooltip.style.color = 'white';
+                    tooltip.style.padding = '8px 12px';
+                    tooltip.style.borderRadius = '6px';
+                    tooltip.style.fontSize = '0.9rem';
+                    tooltip.style.bottom = '100%';
+                    tooltip.style.left = '50%';
+                    tooltip.style.transform = 'translateX(-50%)';
+                    tooltip.style.whiteSpace = 'nowrap';
+                    tooltip.style.zIndex = '100';
+                    
+                    this.appendChild(tooltip);
+                }
+            });
+            
+            stage.addEventListener('mouseleave', function() {
+                const tooltip = this.querySelector('div');
+                if (tooltip) {
+                    this.removeChild(tooltip);
+                }
+            });
+        });
+        
+        // Animate cards on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.stage-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>
